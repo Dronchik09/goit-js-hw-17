@@ -64,28 +64,33 @@ function renderCard(imageData) {
     .join('');
 }
 
+let errorMessageShown = false;
+
 export function handlerError(error) {
-  refs.loader.classList.remove('loader');
-  switch (error) {
-    case 'outdata':
-      iziToast.warning({
-        title: 'Error',
-        message: 'Введіть данні для пошуку!',
-      });
-      break;
-    case 'nodata':
-      iziToast.warning({
-        title: 'Error',
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-      });
-      break;
-    default:
-      iziToast.error({
-        title: 'Error',
-        message: 'Щось пішло не так. Ми працюемо над вирішенням питання!',
-      });
-      break;
+  if (!errorMessageShown) {
+    refs.loader.classList.remove('loader');
+    switch (error) {
+      case 'outdata':
+        iziToast.warning({
+          title: 'Error',
+          message: 'Введіть данні для пошуку!',
+        });
+        break;
+      case 'nodata':
+        iziToast.warning({
+          title: 'Error',
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+        });
+        break;
+      default:
+        iziToast.error({
+          title: 'Error',
+          message: "We're sorry, but you've reached the end of search results.",
+        });
+        break;
+    }
+    errorMessageShown = true;
   }
 }
 

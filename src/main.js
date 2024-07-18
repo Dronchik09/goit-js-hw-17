@@ -55,16 +55,20 @@ function loadMoreImage() {
       .then(image => {
         addImage(image.hits);
         scrollCard();
+        
+        if (totalPage === currentPage) {
+          refs.loadmore.style.setProperty('--lmb-dispay', `none`);
+          iziToast.info({
+            title: 'Info',
+            message: "We're sorry, but you've reached the end of search results.",
+          });
+          return;
+        } else {
+          currentPage += 1;
+        }
       })
       .catch(error => {
         handlerError(error);
       });
-
-    if (totalPage === currentPage) {
-      refs.loadmore.style.setProperty('--lmb-dispay', `none`);
-      return;
-    } else {
-      currentPage += 1;
-    }
   });
 }

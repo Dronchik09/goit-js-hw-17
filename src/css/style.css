@@ -6,6 +6,22 @@ input:active {
   border-color: #000;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+}
+
+main {
+  margin-top: 60px;
+}
+
+input:focus,
+input:active {
+  border-color: #000;
+}
 button {
   padding: 8px 16px;
   border-radius: 8px;
@@ -97,7 +113,7 @@ button:hover {
   position: absolute;
   border-radius: 50%;
   inset: 0px;
-  border: 5px solid green;
+  border: 5px solid black;
   animation: prixClipFix 2s linear infinite;
 }
 .loader::after {
@@ -131,4 +147,9 @@ button:hover {
   100% {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
+}
+.loadmore-button {
+  --lmb-dispay: none;
+  display: var(--lmb-dispay);
+  margin: 0 auto;
 }
